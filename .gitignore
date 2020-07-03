@@ -1,0 +1,16 @@
+*.lock
+*.log
+*.swp
+*.tmp
+*~
+.DS_Store
+._*
+.idea
+.vs
+.vscode
+/_ReSharper.Caches/
+/packages/
+/tags
+bin/
+obj/
+riderModule.iml

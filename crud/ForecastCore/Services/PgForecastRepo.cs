@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ForecastCore.Models;
-using WebApplication;
+using Forecast;
+using Google.Protobuf.WellKnownTypes;
+using Enum = System.Enum;
 
 namespace ForecastCore.Services
 {
@@ -19,18 +20,17 @@ namespace ForecastCore.Services
 
             var rng = new Random();
             var sampleTopic = new CreateTopicSample();
-            var maxEnum = Enum.GetValues(typeof(WeatherSummaries))
+            var maxEnum = Enum.GetValues(typeof(Summary))
                 .Cast<Int32>().Max();
-            sampleTopic.CreateTopic("lilihi", "lilihiTest");
 
             var forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
-                    Date = DateTime.Now.AddDays(index),
+                    Date = Timestamp.FromDateTime(DateTime.Now.AddDays(index)),
                     TemperatureC = rng.Next(-20, 55),
-                    Summary = ((WeatherSummaries) rng.Next(maxEnum)).ToString()
+                    Summary = ((Summary) rng.Next(maxEnum))
                 }).ToList()
                 ;
-            sampleTopic.PublishMessage("lilihi", "lilihiTest");
+            sampleTopic.PublishMessage("project", "topic");
             return forecasts;
         }
         public Task<List<WeatherForecast>> GetForecastsByCity(string city)

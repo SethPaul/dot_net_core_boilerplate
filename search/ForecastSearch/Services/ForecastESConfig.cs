@@ -1,9 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using ForecastCore.Models;
+using Forecast;
 using Nest;
-using WebApplication;
 
 namespace ForecastCore.Services
 {

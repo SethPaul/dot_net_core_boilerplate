@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WebApplication;
+using Forecast;
 
 namespace ForecastCore.Models
 {

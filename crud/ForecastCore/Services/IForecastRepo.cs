@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApplication;
+using Forecast;
 
 namespace ForecastCore.Services
 {

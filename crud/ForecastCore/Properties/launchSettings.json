@@ -6,7 +6,8 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "DOT_NET_ENV": "dev",
-        "GOOGLE_APPLICATION_CREDENTIALS": "/home/seth/workspace/lilihi/lilihi-5a72ee9766b4.json"
+        "GOOGLE_APPLICATION_CREDENTIALS": "",
+        "PUBSUB_PROJECT_ID": "some_project"
       }
     },
     "core_launch": {
@@ -15,7 +16,9 @@
       "launchUrl": "",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "DOT_NET_ENV": "dev"
+        "DOT_NET_ENV": "dev",
+        "GOOGLE_APPLICATION_CREDENTIALS": "",
+        "PUBSUB_PROJECT_ID": "some_project"
       }
     }
   }

@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Forecast;
 using ForecastCore.Models;
 using Microsoft.Extensions.Logging;
 using Nest;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using WebApplication;
 
 namespace ForecastCore.Services
 {

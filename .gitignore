@@ -2,6 +2,7 @@
 *.log
 *.swp
 *.tmp
+*.user
 *~
 .DS_Store
 ._*

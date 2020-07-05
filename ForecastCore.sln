@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{810F609A-8405-4F19-BD21-CBE576DAEA5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForecastCore", "ForecastCore\ForecastCore.csproj", "{810F609A-8405-4F19-BD21-CBE576DAEA5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Test", "Web.Test\Web.Test.csproj", "{372DAE37-5912-46F7-863C-D1EDAD9994B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForecastCore.Tests", "ForecastCore.Tests\ForecastCore.Tests.csproj", "{372DAE37-5912-46F7-863C-D1EDAD9994B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

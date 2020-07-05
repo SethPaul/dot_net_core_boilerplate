@@ -1,0 +1,44 @@
+// [START declaration]
+syntax = "proto3";
+package forecasts;
+
+import "google/protobuf/timestamp.proto";
+// [END declaration]
+
+
+// [START csharp_declaration]
+option csharp_namespace = "Forecast";
+// [END csharp_declaration]
+
+// [START messages]
+// A weather forecast with date, temp, summary
+message WeatherForecast {
+  google.protobuf.Timestamp CreationTime = 1;
+  google.protobuf.Timestamp Date = 2;
+  string City = 3;
+  Context Context = 4;
+  int32 TemperatureC = 5;
+  Summary Summary =6;
+
+}
+
+// Forecast context
+enum Context {
+  InSun = 0;
+  InShade = 1;
+}
+
+// Summary of conditions
+enum Summary {
+  Freezing=0;
+  Bracing=1;
+  Chilly=2;
+  Cool=3;
+  Mild=4;
+  Warm=5;
+  Balmy=6;
+  Hot=7;
+  Sweltering=8;
+  Scorching=9;
+}
+// [END messages]

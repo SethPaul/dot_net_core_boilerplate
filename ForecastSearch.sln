@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForecastSearch", "ForecastSearch\ForecastSearch.csproj", "{3136CC85-1705-46BF-964C-83BBD1E4CB6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForecastSearch.Tests", "ForecastSearch.Tests\ForecastSearch.Tests.csproj", "{50327575-0544-4EB8-9FF1-71EC871D4870}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3136CC85-1705-46BF-964C-83BBD1E4CB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3136CC85-1705-46BF-964C-83BBD1E4CB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3136CC85-1705-46BF-964C-83BBD1E4CB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3136CC85-1705-46BF-964C-83BBD1E4CB6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50327575-0544-4EB8-9FF1-71EC871D4870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50327575-0544-4EB8-9FF1-71EC871D4870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50327575-0544-4EB8-9FF1-71EC871D4870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50327575-0544-4EB8-9FF1-71EC871D4870}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,86 @@
+version: '3.1'
+services:
+  forecasts-es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: forecasts-es01
+    environment:
+      - node.name=forecasts-es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=forecasts-es02,forecasts-es03
+      - cluster.initial_master_nodes=forecasts-es01,forecasts-es02,forecasts-es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - forecasts-es-data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - forecasts
+  forecasts-es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: forecasts-es02
+    environment:
+      - node.name=forecasts-es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=forecasts-es01,forecasts-es03
+      - cluster.initial_master_nodes=forecasts-es01,forecasts-es02,forecasts-es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - forecasts-es-data02:/usr/share/elasticsearch/data
+    networks:
+      - forecasts
+  forecasts-es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: forecasts-es03
+    environment:
+      - node.name=forecasts-es03
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=forecasts-es01,forecasts-es02
+      - cluster.initial_master_nodes=forecasts-es01,forecasts-es02,forecasts-es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - forecasts-es-data03:/usr/share/elasticsearch/data
+    networks:
+      - forecasts
+
+  redis:
+    image: redis:6.0.5-alpine
+    ports:
+      - 6380:6379
+    networks:
+      - forecasts
+
+volumes:
+  forecasts-es-data01:
+    driver: local
+  forecasts-es-data02:
+    driver: local
+  forecasts-es-data03:
+    driver: local
+
+networks:
+  forecasts:
+    driver: bridge

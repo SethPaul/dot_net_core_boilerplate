@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using ForecastCore.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Nest;
 using NUnit.Framework;
 using StackExchange.Redis;
 

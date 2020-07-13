@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - pg-db-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev_pw
+      POSTGRES_DB: forecasts
+    networks:
+      - forecasts
+
+  redis:
+    image: redis:6.0.5-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - forecasts
+
+volumes:
+  pg-db-data:
+    driver: local
+
+networks:
+  forecasts:
+    driver: bridge

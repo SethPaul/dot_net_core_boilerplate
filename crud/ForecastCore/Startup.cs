@@ -5,6 +5,7 @@ using ForecastCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -26,6 +27,10 @@ namespace ForecastCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFrameworkNpgsql().AddDbContext<pgContext>(opt =>
+                    opt.UseNpgsql(Configuration.GetConnectionString("pgContext"))
+                .UseSnakeCaseNamingConvention());
+
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ContractResolver = new DefaultContractResolver()
                 {

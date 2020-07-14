@@ -13,12 +13,13 @@ option csharp_namespace = "Forecast";
 // [START messages]
 // A weather forecast with date, temp, summary
 message WeatherForecast {
-  google.protobuf.Timestamp CreationTime = 1;
-  google.protobuf.Timestamp Date = 2;
-  string City = 3;
-  Context Context = 4;
-  int32 TemperatureC = 5;
-  Summary Summary =6;
+  string id =1;
+  google.protobuf.Timestamp CreationTime = 2;
+  google.protobuf.Timestamp Date = 3;
+  string City = 4;
+  Context Context = 5;
+  int32 TemperatureC = 6;
+  Summary Summary =7;
 
 }
 

@@ -27,7 +27,7 @@ namespace ForecastCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkNpgsql().AddDbContext<pgContext>(opt =>
+            services.AddEntityFrameworkNpgsql().AddDbContext<PgContext>(opt =>
                     opt.UseNpgsql(Configuration.GetConnectionString("pgContext"))
                 .UseSnakeCaseNamingConvention());
 

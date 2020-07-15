@@ -6,16 +6,13 @@ namespace ForecastCore.Services
 {
     public class PgContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql(
-            "Host=localhost;Port=5432;Database=forecasts;Username=dev;" +
-            "Password=dev_pw",
-            options => options.EnableRetryOnFailure());
-        static PgContext()
-            => NpgsqlConnection.GlobalTypeMapper.MapEnum<Summary>();
+        public PgContext(DbContextOptions options) : base(options)
+        {
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<Summary>();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.UseHiLo();
+            modelBuilder.UseHiLo();
             modelBuilder.Entity<WeatherForecast>()
                 // .HasIndex(b => b.Id)
                 // .IncludeProperties(b => b.Name)

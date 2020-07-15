@@ -28,8 +28,9 @@ namespace ForecastCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<PgContext>(opt =>
-                    opt.UseNpgsql(Configuration.GetConnectionString("pgContext"))
-                .UseSnakeCaseNamingConvention());
+                opt.UseNpgsql(Configuration.GetConnectionString("pgContext"))
+                    .UseSnakeCaseNamingConvention()
+            );
 
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ContractResolver = new DefaultContractResolver()
@@ -41,10 +42,7 @@ namespace ForecastCore
             {
                 options.EnableForHttps = true;
             });
-            // register the client as a singleton
-            // services.AddSingleton<IElasticClient>(ForecastSearchConfiguration.GetClient());
             services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
-            // services.AddTransient<IForecastSearch, EsForecastSearch>();
             services.AddTransient<IForecastRepo, PgForecastRepo>();
             services.AddSwaggerGen(c =>
             {
@@ -85,18 +83,18 @@ namespace ForecastCore
             app.UseRouting();
             app.UseResponseCompression();
             app.Use(async (context, next) =>
-                {
-                    context.Response.GetTypedHeaders().CacheControl =
-                        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
-                        {
-                            Public = true,
-                            MaxAge = TimeSpan.FromSeconds(30)
-                        };
-                    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
-                        new[] { "Accept-Encoding" };
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(30)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                    new[] { "Accept-Encoding" };
 
-                    await next();
-                });
+                await next();
+            });
             app.UseResponseCaching();
 
             app.UseAuthorization();

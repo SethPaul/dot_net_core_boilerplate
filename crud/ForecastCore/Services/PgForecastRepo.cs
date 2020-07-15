@@ -10,6 +10,14 @@ namespace ForecastCore.Services
 {
     public class PgForecastRepo : IForecastRepo
     {
+        private PgContext _pgContext;
+
+        public PgForecastRepo(
+            PgContext pgContext
+        )
+        {
+            _pgContext = pgContext;
+        }
         public Task<List<WeatherForecast>> SaveForecasts(
             List<WeatherForecast> forecasts)
         {
@@ -30,11 +38,9 @@ namespace ForecastCore.Services
                 }).ToList()
                 ;
             // sampleTopic.PublishMessage("project", "topic");
-            using (var db = new PgContext())
-            {
-                db.Add(forecasts.FirstOrDefault());
-                db.SaveChanges();
-            }
+            _pgContext.Add(forecasts.FirstOrDefault());
+            _pgContext.SaveChanges();
+
             return forecasts;
         }
         public Task<List<WeatherForecast>> GetForecastsByCity(string city)

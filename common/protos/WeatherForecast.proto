@@ -2,7 +2,7 @@
 syntax = "proto3";
 package forecasts;
 
-//import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 // [END declaration]
 
 
@@ -14,8 +14,8 @@ option csharp_namespace = "Forecast";
 // A weather forecast with date, temp, summary
 message WeatherForecast {
   string id =1;
-//  google.protobuf.Timestamp CreationTime = 2;
-//  google.protobuf.Timestamp Date = 3;
+  google.protobuf.Timestamp CreationTime = 2;
+  google.protobuf.Timestamp Date = 3;
   string City = 4;
   Context Context = 5;
   int32 TemperatureC = 6;

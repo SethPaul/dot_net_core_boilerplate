@@ -23,23 +23,29 @@ namespace ForecastCore.Migrations
             modelBuilder.Entity("Forecast.WeatherForecast", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<string>("City")
+                        .HasColumnName("city")
                         .HasColumnType("text");
 
                     b.Property<int>("Context")
+                        .HasColumnName("context")
                         .HasColumnType("integer");
 
                     b.Property<Summary>("Summary")
+                        .HasColumnName("summary")
                         .HasColumnType("summary");
 
                     b.Property<int>("TemperatureC")
+                        .HasColumnName("temperature_c")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_forecasts");
 
-                    b.ToTable("Forecasts");
+                    b.ToTable("forecasts");
                 });
 #pragma warning restore 612, 618
         }

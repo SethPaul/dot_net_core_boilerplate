@@ -15,14 +15,15 @@ namespace ForecastCore.Services
             => NpgsqlConnection.GlobalTypeMapper.MapEnum<Summary>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseHiLo();
+            // modelBuilder.UseHiLo();
             modelBuilder.Entity<WeatherForecast>()
                 // .HasIndex(b => b.Id)
                 // .IncludeProperties(b => b.Name)
                 // .HasMethod("gin")
-                .Property(b => b.Id)
-                .IsRequired()
-                .HasDefaultValueSql("uuid_generate_v4()");
+                .HasKey(b => b.Id);
+                // .Property(b => b.Id)dd
+                // .IsRequired()
+                // .HasDefaultValueSql("uuid_generate_v4()");
             modelBuilder.HasPostgresEnum<Summary>();
         }
         public DbSet<WeatherForecast> Forecasts { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Forecast;
 using ForecastCore.Services;
@@ -30,9 +31,10 @@ namespace ForecastCore.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            return new List<WeatherForecast>();
+            return await _forecastRepo.GenerateForecasts("chicago", DateTime.UtcNow);
+            // return new List<WeatherForecast>();
         }
 
         /// <summary>

@@ -24,22 +24,19 @@ namespace Forecast {
     static WeatherForecastReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Chxwcm90b3MvV2VhdGhlckZvcmVjYXN0LnByb3RvEglmb3JlY2FzdHMaH2dv",
-            "b2dsZS9wcm90b2J1Zi90aW1lc3RhbXAucHJvdG8i5wEKD1dlYXRoZXJGb3Jl",
-            "Y2FzdBIKCgJpZBgBIAEoCRIwCgxDcmVhdGlvblRpbWUYAiABKAsyGi5nb29n",
-            "bGUucHJvdG9idWYuVGltZXN0YW1wEigKBERhdGUYAyABKAsyGi5nb29nbGUu",
-            "cHJvdG9idWYuVGltZXN0YW1wEgwKBENpdHkYBCABKAkSIwoHQ29udGV4dBgF",
-            "IAEoDjISLmZvcmVjYXN0cy5Db250ZXh0EhQKDFRlbXBlcmF0dXJlQxgGIAEo",
-            "BRIjCgdTdW1tYXJ5GAcgASgOMhIuZm9yZWNhc3RzLlN1bW1hcnkqIQoHQ29u",
-            "dGV4dBIJCgVJblN1bhAAEgsKB0luU2hhZGUQASqBAQoHU3VtbWFyeRIMCghG",
-            "cmVlemluZxAAEgsKB0JyYWNpbmcQARIKCgZDaGlsbHkQAhIICgRDb29sEAMS",
-            "CAoETWlsZBAEEggKBFdhcm0QBRIJCgVCYWxteRAGEgcKA0hvdBAHEg4KClN3",
-            "ZWx0ZXJpbmcQCBINCglTY29yY2hpbmcQCUILqgIIRm9yZWNhc3RiBnByb3Rv",
-            "Mw=="));
+            "Chxwcm90b3MvV2VhdGhlckZvcmVjYXN0LnByb3RvEglmb3JlY2FzdHMiiwEK",
+            "D1dlYXRoZXJGb3JlY2FzdBIKCgJpZBgBIAEoCRIMCgRDaXR5GAQgASgJEiMK",
+            "B0NvbnRleHQYBSABKA4yEi5mb3JlY2FzdHMuQ29udGV4dBIUCgxUZW1wZXJh",
+            "dHVyZUMYBiABKAUSIwoHU3VtbWFyeRgHIAEoDjISLmZvcmVjYXN0cy5TdW1t",
+            "YXJ5KiEKB0NvbnRleHQSCQoFSW5TdW4QABILCgdJblNoYWRlEAEqgQEKB1N1",
+            "bW1hcnkSDAoIRnJlZXppbmcQABILCgdCcmFjaW5nEAESCgoGQ2hpbGx5EAIS",
+            "CAoEQ29vbBADEggKBE1pbGQQBBIICgRXYXJtEAUSCQoFQmFsbXkQBhIHCgNI",
+            "b3QQBxIOCgpTd2VsdGVyaW5nEAgSDQoJU2NvcmNoaW5nEAlCC6oCCEZvcmVj",
+            "YXN0YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
+          new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Forecast.Context), typeof(global::Forecast.Summary), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Forecast.WeatherForecast), global::Forecast.WeatherForecast.Parser, new[]{ "Id", "CreationTime", "Date", "City", "Context", "TemperatureC", "Summary" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Forecast.WeatherForecast), global::Forecast.WeatherForecast.Parser, new[]{ "Id", "City", "Context", "TemperatureC", "Summary" }, null, null, null, null)
           }));
     }
     #endregion
@@ -103,8 +100,6 @@ namespace Forecast {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public WeatherForecast(WeatherForecast other) : this() {
       id_ = other.id_;
-      creationTime_ = other.creationTime_ != null ? other.creationTime_.Clone() : null;
-      date_ = other.date_ != null ? other.date_.Clone() : null;
       city_ = other.city_;
       context_ = other.context_;
       temperatureC_ = other.temperatureC_;
@@ -128,31 +123,13 @@ namespace Forecast {
       }
     }
 
-    /// <summary>Field number for the "CreationTime" field.</summary>
-    public const int CreationTimeFieldNumber = 2;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp creationTime_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp CreationTime {
-      get { return creationTime_; }
-      set {
-        creationTime_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Date" field.</summary>
-    public const int DateFieldNumber = 3;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp date_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp Date {
-      get { return date_; }
-      set {
-        date_ = value;
-      }
-    }
-
     /// <summary>Field number for the "City" field.</summary>
     public const int CityFieldNumber = 4;
     private string city_ = "";
+    /// <summary>
+    ///  google.protobuf.Timestamp CreationTime = 2;
+    ///  google.protobuf.Timestamp Date = 3;
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string City {
       get { return city_; }
@@ -208,8 +185,6 @@ namespace Forecast {
         return true;
       }
       if (Id != other.Id) return false;
-      if (!object.Equals(CreationTime, other.CreationTime)) return false;
-      if (!object.Equals(Date, other.Date)) return false;
       if (City != other.City) return false;
       if (Context != other.Context) return false;
       if (TemperatureC != other.TemperatureC) return false;
@@ -221,8 +196,6 @@ namespace Forecast {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (creationTime_ != null) hash ^= CreationTime.GetHashCode();
-      if (date_ != null) hash ^= Date.GetHashCode();
       if (City.Length != 0) hash ^= City.GetHashCode();
       if (Context != global::Forecast.Context.InSun) hash ^= Context.GetHashCode();
       if (TemperatureC != 0) hash ^= TemperatureC.GetHashCode();
@@ -243,14 +216,6 @@ namespace Forecast {
       if (Id.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Id);
-      }
-      if (creationTime_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(CreationTime);
-      }
-      if (date_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Date);
       }
       if (City.Length != 0) {
         output.WriteRawTag(34);
@@ -279,12 +244,6 @@ namespace Forecast {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (creationTime_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreationTime);
-      }
-      if (date_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Date);
-      }
       if (City.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(City);
       }
@@ -311,18 +270,6 @@ namespace Forecast {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.creationTime_ != null) {
-        if (creationTime_ == null) {
-          CreationTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        CreationTime.MergeFrom(other.CreationTime);
-      }
-      if (other.date_ != null) {
-        if (date_ == null) {
-          Date = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        Date.MergeFrom(other.Date);
-      }
       if (other.City.Length != 0) {
         City = other.City;
       }
@@ -348,20 +295,6 @@ namespace Forecast {
             break;
           case 10: {
             Id = input.ReadString();
-            break;
-          }
-          case 18: {
-            if (creationTime_ == null) {
-              CreationTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(CreationTime);
-            break;
-          }
-          case 26: {
-            if (date_ == null) {
-              Date = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(Date);
             break;
           }
           case 34: {

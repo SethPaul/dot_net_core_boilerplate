@@ -25,6 +25,7 @@
       <PackageReference Include="StackExchange.Redis" Version="2.1.30" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
       <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.4.1" />
+      <PackageReference Include="VaultSharp" Version="1.4.0.4" />
     </ItemGroup>
 
 

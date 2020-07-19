@@ -29,8 +29,8 @@ namespace ForecastCore.Services
             modelBuilder.Entity<WeatherForecast>()
                 .Property(t => t.Date)
                 .HasConversion(
-                    c => c.ToInstant().ToUnixTimeSeconds(),
-                    c => Instant.FromUnixTimeSeconds(c).ToTimestamp()
+                    c => c.ToDateTimeOffset(),
+                    c => Timestamp.FromDateTimeOffset(c)
                     )
                 ;
         }

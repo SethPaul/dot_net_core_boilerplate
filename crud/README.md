@@ -6,3 +6,4 @@ dotnet ef migrations remove
 
 ## Attach to PG to check things
 docker exec -it <container> /bin/bash
+psql -U dev forecasts

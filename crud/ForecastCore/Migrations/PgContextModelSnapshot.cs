@@ -42,9 +42,9 @@ namespace ForecastCore.Migrations
                         .HasColumnName("creation_time")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long?>("Date")
+                    b.Property<DateTimeOffset?>("Date")
                         .HasColumnName("date")
-                        .HasColumnType("bigint");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Summary>("Summary")
                         .HasColumnName("summary")

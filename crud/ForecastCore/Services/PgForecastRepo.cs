@@ -23,25 +23,31 @@ namespace ForecastCore.Services
         {
             return null;
         }
-        public async Task<List<WeatherForecast>> GenerateForecasts(string city, DateTime startDate)
+        public async Task<List<WeatherForecast>> GenerateForecasts(string city,
+            DateTimeOffset startDate,
+            int numOfDays, int averageTemp)
         {
             var rng = new Random();
-            // var sampleTopic = new CreateTopicSample();
             var maxEnum = Enum.GetValues(typeof(Summary))
                 .Cast<Int32>().Max();
 
-            var forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var forecasts = Enumerable.Range(0, numOfDays-1).Select(index => new WeatherForecast
                 {
-                    // Date = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(index)),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = ((Summary) rng.Next(maxEnum))
+                    Id = Guid.NewGuid().ToString(),
+                    City = city,
+                    CreationTime =Timestamp.FromDateTimeOffset(DateTimeOffset.UtcNow),
+                    Date = Timestamp.FromDateTimeOffset(startDate.AddDays(index)),
+                    TemperatureC = averageTemp + rng.Next(-20, 55),
+                    Summary = ((Summary) rng.Next(maxEnum)),
+                    Context = Context.InShade
                 }).ToList()
                 ;
-            // sampleTopic.PublishMessage("project", "topic");
-            _pgContext.Add(forecasts.FirstOrDefault());
-            _pgContext.SaveChanges();
+            await _pgContext.AddRangeAsync(forecasts);
+            await _pgContext.SaveChangesAsync();
 
             return forecasts;
+            // var sampleTopic = new CreateTopicSample();
+            // sampleTopic.PublishMessage("project", "topic");
         }
         public Task<List<WeatherForecast>> GetForecastsByCity(string city)
         {

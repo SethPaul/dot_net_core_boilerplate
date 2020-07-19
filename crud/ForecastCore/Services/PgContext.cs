@@ -1,5 +1,8 @@
 using Forecast;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
+using NodaTime.Serialization.Protobuf;
 using Npgsql;
 
 namespace ForecastCore.Services
@@ -13,15 +16,23 @@ namespace ForecastCore.Services
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseHiLo();
-            modelBuilder.Entity<WeatherForecast>()
-                // .HasIndex(b => b.Id)
-                // .IncludeProperties(b => b.Name)
-                // .HasMethod("gin")
-                .HasKey(b => b.Id);
-                // .Property(b => b.Id)dd
-                // .IsRequired()
-                // .HasDefaultValueSql("uuid_generate_v4()");
             modelBuilder.HasPostgresEnum<Summary>();
+            modelBuilder.HasPostgresEnum<Context>();
+            modelBuilder.Entity<WeatherForecast>()
+                .Property(t => t.CreationTime)
+                .HasConversion(
+                    c => c.ToDateTimeOffset(),
+                    c => Timestamp.FromDateTimeOffset(c)
+                    )
+                ;
+
+            modelBuilder.Entity<WeatherForecast>()
+                .Property(t => t.Date)
+                .HasConversion(
+                    c => c.ToInstant().ToUnixTimeSeconds(),
+                    c => Instant.FromUnixTimeSeconds(c).ToTimestamp()
+                    )
+                ;
         }
         public DbSet<WeatherForecast> Forecasts { get; set; }
     }

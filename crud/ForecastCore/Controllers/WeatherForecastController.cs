@@ -5,6 +5,8 @@ using Forecast;
 using ForecastCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NodaTime;
+using DateTime = Google.Type.DateTime;
 
 namespace ForecastCore.Controllers
 {
@@ -29,11 +31,20 @@ namespace ForecastCore.Controllers
         /// <summary>
         /// Generate forecast
         /// </summary>
+        /// <param name="city">City of Forecast</param>
+        /// <param name="startDatetime"></param>
+        /// <param name="numOfDays"></param>
+        /// <param name="averageTemp"></param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        [HttpGet("generate_forecasts")]
+        public async Task<IEnumerable<WeatherForecast>> GenerateForecasts(
+            [FromQuery()] string city,
+            [FromQuery()] DateTimeOffset startDatetime,
+            [FromQuery()] int numOfDays,
+            [FromQuery()] int averageTemp)
         {
-            return await _forecastRepo.GenerateForecasts("chicago", DateTime.UtcNow);
+            return await _forecastRepo.GenerateForecasts(city,
+                startDatetime, numOfDays, averageTemp);
             // return new List<WeatherForecast>();
         }
 

@@ -16,15 +16,18 @@ namespace ForecastCore.Controllers
     {
 
         private readonly IForecastRepo _forecastRepo;
+        private readonly IForecastService _forecastService;
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(
             ILogger<WeatherForecastController> logger,
-            IForecastRepo forecastRepo
+            IForecastRepo forecastRepo,
+            IForecastService forecastService
             )
         {
             _logger = logger;
             _forecastRepo = forecastRepo;
+            _forecastService = forecastService;
         }
 
 
@@ -43,9 +46,8 @@ namespace ForecastCore.Controllers
             [FromQuery()] int numOfDays,
             [FromQuery()] int averageTemp)
         {
-            return await _forecastRepo.GenerateForecasts(city,
+            return await _forecastService.GenerateForecasts(city,
                 startDatetime, numOfDays, averageTemp);
-            // return new List<WeatherForecast>();
         }
 
         /// <summary>

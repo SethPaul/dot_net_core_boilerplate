@@ -18,36 +18,11 @@ namespace ForecastCore.Services
         {
             _pgContext = pgContext;
         }
-        public Task<List<WeatherForecast>> SaveForecasts(
+        public async Task SaveForecasts(
             List<WeatherForecast> forecasts)
         {
-            return null;
-        }
-        public async Task<List<WeatherForecast>> GenerateForecasts(string city,
-            DateTimeOffset startDate,
-            int numOfDays, int averageTemp)
-        {
-            var rng = new Random();
-            var maxEnum = Enum.GetValues(typeof(Summary))
-                .Cast<Int32>().Max();
-
-            var forecasts = Enumerable.Range(0, numOfDays-1).Select(index => new WeatherForecast
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    City = city,
-                    CreationTime =Timestamp.FromDateTimeOffset(DateTimeOffset.UtcNow),
-                    Date = Timestamp.FromDateTimeOffset(startDate.AddDays(index)),
-                    TemperatureC = averageTemp + rng.Next(-20, 55),
-                    Summary = ((Summary) rng.Next(maxEnum)),
-                    Context = Context.InShade
-                }).ToList()
-                ;
             await _pgContext.AddRangeAsync(forecasts);
             await _pgContext.SaveChangesAsync();
-
-            return forecasts;
-            // var sampleTopic = new CreateTopicSample();
-            // sampleTopic.PublishMessage("project", "topic");
         }
         public Task<List<WeatherForecast>> GetForecastsByCity(string city)
         {
